@@ -5,15 +5,10 @@ home
 {% endblock title %}
 
 {% block content%}
-quiz list 
+ 
 <hr>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="quizStartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -30,4 +25,21 @@ quiz list
       </div>
     </div>
   </div>
+<div class="h1">Quiz List</div>
+<hr>
+{% for obj in object_list%}
+    <button
+        class="btn btn-link modal-button"
+        data-pk="{{obj.pk}}"
+        data-quiz="{{obj.name}}"
+        data-questions="{{obj.number_of_question}}"
+        data-difficulty="{{obj.difficulty}}"
+        data-time='{{obj.time}}'
+        data-pass='{{obj.required_score_to_pass}}'
+        data-bs-toggle='modal'
+        data-bs-target='#quizStartModal'>
+        {{obj.name}}
+    
+    </button>
+{% endfor%}
 {% endblock content %}
