@@ -18,7 +18,8 @@ modalBtns.forEach(modalBtn=>modalBtn.addEventListener('click',()=>{
     modalBody.innerHTML = "<li>Subject:" + name +'<br/>'+"<li>Number of questions: "
         +numQuestions+'<br/><li>Difficulty Level:'+difficulty+'<br/><li>Score to Pass '
         +scoreToPass+'<br/><li>Time:'+ time
-    
+ 
+
     startBtn.addEventListener('click',()=>
     {
         window.location.href = url +pk;
