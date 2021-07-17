@@ -1,3 +1,4 @@
+
 from django.db import models
 from quizes.models import Quiz
 # Create your models here.
@@ -10,7 +11,7 @@ class Question(models.Model):
         return str(self.text)
 
     def get_answers(self):
-        self.answer_set.all()
+        return self.answer_set.all()
 
 
 class Answer(models.Model):

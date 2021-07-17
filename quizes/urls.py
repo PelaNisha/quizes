@@ -11,6 +11,6 @@ app_name = 'quizes'
 urlpatterns = [
     path('', QuizListView.as_view(), name='main_view'),
     path('<pk>/', quiz_view, name = 'quiz_view' ),
-    path('<pk>/data/', quiz_data_view, name = 'quiz_data_view' ),
+    path('<pk>/data/', quiz_data_view, name = 'quiz_data_view'),
 
 ]
