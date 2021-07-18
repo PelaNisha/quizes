@@ -35,3 +35,40 @@ $.ajax({
     }
     
 });
+
+const quizform = document.getElementById('quiz-form')
+const csrf = document.getElementsByName('csrfmiddlewaretoken')
+const elements = [...document.getElementsByClassName('ans')]
+
+const sentData=()=>{
+    const data = {}
+    data['csrfmiddlewaretoken'] = csrf[0].value
+    elements.forEach(el=>{
+        if(el.checked){
+            data[el.name] = el.value
+        }else{
+            if(!data[el.name]){
+                data[el.name]=null
+            }
+        }
+        
+    })
+    $.ajax({
+        type :'POST',
+        url:`${url}save/`,
+        data : data,
+        success:function(response){
+            console.log(response)
+        },
+        error:function(error){
+            console.log(error)
+        }
+
+    })
+}
+
+quizform.addEventListener('submit',e=>{
+    e.preventDefault()
+
+    sentData()
+})
