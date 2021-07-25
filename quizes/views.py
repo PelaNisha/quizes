@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import Quiz
+from quizes.models import *
 from django.views.generic import ListView
 from django.http import JsonResponse
+from questions.models import Question
 # Create your views here.
 
 class QuizListView(ListView):
@@ -26,6 +28,30 @@ def quiz_data_view(request, pk):
     })
           
 def save_quiz_view(request, pk):
-    print(request.POST)
-    return JsonResponse({'text':'works'})         
+    # print(request.POST)
+         
 
+    if request.is_ajax():
+        questions = []
+        data = request.POST
+        data_= dict(data.lists())
+        data_.pop('csrfmiddlewaretoken') 
+        print(data_)
+
+        for k in data_.keys():
+            print('key:', k)
+            question = Question.objects.get(text = k)
+            questions.append(question)
+        print(questions)
+
+        user = request.user
+        quiz = Quiz.objects.get(pk = pk)
+        score =0
+        multiplier= 100/quiz.number_of_question
+        results = []
+        correct_answer = None
+        for q in questions:
+            a_selected = request.POST.get(q.text)
+            print('Selected:', a_selected)
+
+    return JsonResponse({'text':'works'})        

@@ -21,7 +21,7 @@ $.ajax({
                 answers.forEach(answer=>{
                     quizBox.innerHTML+=`
                         <div>
-                            <input type='radio' class='ans' id= '${question}-${answer}' name='${question} value='${answer}'>
+                            <input type='radio' class='ans' id= '${question}-${answer}' name='${question}' value='${answer}'>
                             <label for ='${question}'>${answer}</label>
                         </div>    
                     `
@@ -40,7 +40,7 @@ const quizform = document.getElementById('quiz-form')
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 const elements = [...document.getElementsByClassName('ans')]
 
-const sentData=()=>{
+const sentData=()=>{  
     const data = {}
     data['csrfmiddlewaretoken'] = csrf[0].value
     elements.forEach(el=>{
