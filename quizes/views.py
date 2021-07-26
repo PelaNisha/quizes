@@ -53,5 +53,15 @@ def save_quiz_view(request, pk):
         for q in questions:
             a_selected = request.POST.get(q.text)
             print('Selected:', a_selected)
+                if a_selected!="":
+                question_answers = Answer.objects.filter(question= q)
+                for a in question_answers:
+                    if a_selected = a.text:
+                        score+=1
+                        correct_answer= a.text  
+                    else: 
+                        if a.correct:
+                            correct_answer= a.text
+                results.append({str(q):{'correct_answer': correct_answer, 'answered':a_selected}})   
 
     return JsonResponse({'text':'works'})        
